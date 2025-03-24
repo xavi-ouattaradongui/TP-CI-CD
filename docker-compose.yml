@@ -1,0 +1,16 @@
+version: '3'
+
+services:
+  app:
+    image: dongui21/tp-ci-cd
+    ports:
+      - "3000:3000"
+    environment:
+      - MONGO_URI=mongodb://mongo:27017/tp_ci_cd
+    depends_on:
+      - mongo
+
+  mongo:
+    image: mongo
+    ports:
+      - "27017:27017"

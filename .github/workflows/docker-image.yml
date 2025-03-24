@@ -1,0 +1,23 @@
+name: Build and Push Docker Image
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Login to Docker Hub
+        run: echo "${{ secrets.DOCKER_PASSWORD }}" | docker login -u "dongui21" --password-stdin
+
+      - name: Build Docker image
+        run: docker build -t dongui21/tp-ci-cd .
+
+      - name: Push Docker image
+        run: docker push dongui21/tp-ci-cd
