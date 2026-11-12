@@ -1,12 +1,12 @@
 # Utiliser Node.js comme image de base
-FROM node:16
+FROM node:20-alpine
 
 # Définir le dossier de travail
 WORKDIR /app
 
 # Copier les fichiers package.json et installer les dépendances
 COPY package*.json ./
-RUN npm install
+RUN npm ci --omit=dev
 
 # Copier tous les fichiers du projet
 COPY . .

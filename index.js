@@ -1,15 +1,14 @@
 const express = require('express');
 const mongoose = require('mongoose');
-const bodyParser = require('body-parser');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
 const MONGO_URI = process.env.MONGO_URI || 'mongodb://localhost:27017/tp_ci_cd';
 
-app.use(bodyParser.json());
+app.use(express.json());
 
 // Connexion à MongoDB
-mongoose.connect(MONGO_URI, { useNewUrlParser: true, useUnifiedTopology: true })
+mongoose.connect(MONGO_URI)
     .then(() => console.log('MongoDB connecté'))
     .catch(err => console.log(err));
 
